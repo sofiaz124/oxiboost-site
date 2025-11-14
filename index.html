@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oxiboost | Bebida oxigenante</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --fg: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22d3ee;       /* azul */
+      --accent-pink: #ec4899;  /* rosa tipo logo */
+      --card: #020617;
+      --border: #1e293b;
+      --radius: 18px;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%);
+      color: var(--fg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.96),
+        rgba(2, 6, 23, 0.86),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.6rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), var(--accent-pink));
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover {
+      color: var(--fg);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.7rem 1.5rem 4rem;
+    }
+
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at 0 0, #0f172a, #020617 70%);
+    }
+
+    .kicker-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin: 1.1rem 0 0.6rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, var(--accent), var(--accent-pink));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.7rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.16s ease, box-shadow 0.16s ease,
+        background 0.16s ease, border-color 0.16s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--accent), var(--accent-pink));
+      color: #020617;
+      box-shadow: 0 12px 30px rgba(236, 72, 153, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(236, 72, 153, 0.75);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.92);
+      border-color: rgba(148, 163, 184, 0.7);
+      color: var(--fg);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+    }
+
+    .hero-tags {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .hero-tags span {
+      padding: 0.18rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.98);
+      color: var(--muted);
+    }
+
+    .hero-card {
+      border-radius: 28px;
+      padding: 1.5rem 1.5rem 1.8rem;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 60%);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(
+        circle at top,
+        rgba(34, 211, 238, 0.18),
+        transparent 60%
+      );
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .bottle {
+      width: 100%;
+      aspect-ratio: 3 / 5;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: linear-gradient(
+          160deg,
+          rgba(15, 23, 42, 0.2),
+          transparent 40%
+        ),
+        radial-gradient(
+          circle at 20% 0,
+          rgba(34, 211, 238, 0.35),
+          #020617 70%
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bottle-inner {
+      width: 70%;
+      height: 88%;
+      border-radius: 999px;
+      border: 1px solid rgba(226, 232, 240, 0.7);
+      background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.5),
+          rgba(15, 23, 42, 0.2) 35%,
+          rgba(15, 23, 42, 0.85)
+        ),
+        radial-gradient(circle at 50% 0, rgba(34, 211, 238, 0.7), transparent);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bottle-cap {
+      position: absolute;
+      top: 4%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50%;
+      height: 11%;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0, #e5e7eb, #0f172a 90%);
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      box-shadow: 0 6px 12px rgba(15, 23, 42, 0.8);
+    }
+
+    .aroma-ring {
+      position: absolute;
+      top: 14%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 7%;
+      border-radius: 999px;
+      border: 1px dashed rgba(236, 72, 153, 0.9);
+      box-shadow: 0 0 18px rgba(236, 72, 153, 0.8);
+    }
+
+    .bottle-label {
+      position: absolute;
+      inset: 30% 20% 16%;
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: rgba(2, 6, 23, 0.88);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      text-align: center;
+      padding: 0.6rem;
+    }
+
+    .bottle-label-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .bottle-label-sub {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .hero-card-text {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 14px;
+      padding: 0.7rem 0.8rem;
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+    }
+
+    /* GENERIC SECTIONS */
+    .section-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-lead {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 40rem;
+      margin-bottom: 1.4rem;
+    }
+
+    /* PRODUCT */
+    .product-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.6fr);
+      gap: 2.1rem;
+      align-items: start;
+    }
+
+    .card {
+      border-radius: var(--radius);
+      padding: 1.2rem 1.3rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.97);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.9);
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .icon-bullet-list {
+      list-style: none;
+      margin-top: 0.3rem;
+    }
+
+    .icon-bullet-list li {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .icon-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-top: 0.45rem;
+    }
+
+    /* BENEFITS GRID */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+      margin-top: 0.6rem;
+    }
+
+    .benefit {
+      border-radius: var(--radius);
+      padding: 1rem 1rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+      font-size: 0.86rem;
+    }
+
+    .benefit-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    /* SCIENCE / HOW IT WORKS */
+    .steps {
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .steps li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.8rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed rgba(51, 65, 85, 0.9);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .steps li:last-child {
+      border-bottom: none;
+    }
+
+    .step-number {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      background: radial-gradient(
+        circle at 20% 0,
+        var(--accent-pink),
+        #020617 75%
+      );
+    }
+
+    /* CONTACT */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      font-size: 0.95rem;
+      color: var(--fg);
+    }
+
+    .contact-info p + p {
+      margin-top: 0.7rem;
+    }
+
+    .contact-card {
+      border-radius: var(--radius);
+      padding: 1.2rem 1.3rem 1.3rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+      font-size: 0.86rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contact-card label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .input {
+      width: 100%;
+      margin-top: 0.2rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--fg);
+      font-size: 0.86rem;
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: var(--accent-pink);
+      box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.6);
+    }
+
+    textarea.input {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .contact-note {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.4rem 1.5rem 2.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        order: -1;
+      }
+      .product-layout,
+      .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        padding-inline: 1rem;
+      }
+      main {
+        padding-inline: 1rem;
+      }
+      nav ul {
+        gap: 1rem;
+        font-size: 0.8rem;
+      }
+      .hero-title {
+        font-size: 2.1rem;
+      }
+      .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      footer {
+        padding-inline: 1rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .benefits-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-inner">
+      <div class="logo">
+        <img src="oxiboost-logo.png" alt="Oxiboost logo" class="logo-img" />
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#producto">Producto</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#ciencia">Cómo funciona</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="inicio">
+      <div class="hero">
+        <div>
+          <div class="kicker">
+            <span class="kicker-dot"></span>
+            Bebida oxigenante
+          </div>
+          <h1 class="hero-title">
+            Energía limpia para tu día, con <span>Oxiboost</span>.
+          </h1>
+          <p class="hero-subtitle">
+            Oxiboost es una bebida oxigenante con una tapa aromatizada que
+            activa la sensación de sabor al beber. Zero azúcar, más oxígeno y
+            una experiencia pensada para rendimiento, enfoque y bienestar
+            diario.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#producto" class="btn btn-primary">
+              Conocer el producto
+            </a>
+            <a href="#contacto" class="btn btn-ghost">
+              Quiero más información
+            </a>
+          </div>
+
+          <div class="hero-tags">
+            <span>Oxigenación</span>
+            <span>Zero azúcar</span>
+            <span>Tapa aromática</span>
+            <span>Salud & rendimiento</span>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-card-inner">
+            <div class="bottle">
+              <div class="bottle-inner">
+                <div class="bottle-cap"></div>
+                <div class="aroma-ring"></div>
+                <div class="bottle-label">
+                  <div class="bottle-label-title">OXIBOOST</div>
+                  <div class="bottle-label-sub">
+                    Bebida oxigenante<br />con experiencia aromática
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-card-text">
+              Botella diseñada para resaltar la experiencia: tapón con aro
+              aromático para generar sensación de sabor y una propuesta pensada
+              para personas activas, estudiantes, deportistas y fumadores que
+              buscan una alternativa más ligera y funcional.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PRODUCTO -->
+    <section id="producto">
+      <div class="section-kicker">Producto</div>
+      <div class="section-title">¿Qué es Oxiboost?</div>
+      <p class="section-lead">
+        Oxiboost combina agua oxigenada de forma controlada y una tapa con aro
+        aromático. Así se crea una bebida que se siente fresca y ligera, con
+        una experiencia sensorial diferente a lo que ofrecen las aguas
+        saborizadas tradicionales.
+      </p>
+
+      <div class="product-layout">
+        <div class="card">
+          <h3>Elementos clave del diseño</h3>
+          <ul class="icon-bullet-list">
+            <li>
+              <span class="icon-dot"></span>
+              <span>
+                <strong>Diseño de botella cuidado</strong> que comunica pureza,
+                calidad y atención al detalle.
+              </span>
+            </li>
+            <li>
+              <span class="icon-dot"></span>
+              <span>
+                <strong>Tapa especial con aro aromático</strong> que libera
+                aroma en cada sorbo, activando la sensación de sabor sin
+                recargar la fórmula con azúcar.
+              </span>
+            </li>
+            <li>
+              <span class="icon-dot"></span>
+              <span>
+                <strong>Oxigenación del líquido</strong> para aportar una
+                sensación de frescura y bienestar que acompaña el momento de
+                consumo.
+              </span>
+            </li>
+            <li>
+              <span class="icon-dot"></span>
+              <span>
+                Pensado para contextos como <strong>gimnasios, oficinas,
+                campus universitarios, clubs deportivos y puntos de
+                conveniencia</strong>.
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Público objetivo</h3>
+          <ul class="icon-bullet-list">
+            <li>
+              <span class="icon-dot"></span>
+              <span>
+                <strong>Personas activas y deportistas</strong> que buscan
+                hidratación con valor agregado y una sensación de aire fresco
+                después del esfuerzo.
+              </span>
+            </li>
+            <li>
+              <span class="icon-dot"></span>
+              <span>
+                <strong>Estudiantes y personas con jornadas largas</strong> que
+                necesitan mantenerse alertas y con buena energía a lo largo del
+                día.
+              </span>
+            </li>
+            <li>
+              <span class="icon-dot"></span>
+              <span>
+                <strong>Fumadores y personas en ciudades con alta
+                contaminación</strong>, que valoran productos asociados a
+                bienestar y respiración.
+              </span>
+            </li>
+            <li>
+              <span class="icon-dot"></span>
+              <span>
+                Consumidores que quieren <strong>algo diferente a los refrescos
+                y bebidas azucaradas tradicionales</strong>, con propuesta de
+                zero azúcar.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section id="beneficios">
+      <div class="section-kicker">Beneficios</div>
+      <div class="section-title">Por qué elegir Oxiboost</div>
+      <p class="section-lead">
+        Más que una bebida, Oxiboost busca ser un pequeño ritual de bienestar:
+        una pausa para respirar mejor, hidratarse y seguir con el día con una
+        sensación de frescura y zero azúcar.
+      </p>
+
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="benefit-title">Sensación de frescura</div>
+          <p>
+            La combinación de oxigenación y aroma en la tapa genera un
+            refresco sensorial que acompaña cada sorbo.
+          </p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-title">Zero azúcar, más experiencia</div>
+          <p>
+            El aro aromático permite trabajar la percepción de sabor con una
+            fórmula limpia y sin azúcar añadida.
+          </p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-title">Diseño premium</div>
+          <p>
+            El diseño del envase comunica calidad, cuidado y una propuesta
+            diferente dentro de la categoría de aguas funcionales.
+          </p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-title">Ideal para la rutina diaria</div>
+          <p>
+            Para el gym, la oficina, el estudio o después de fumar: un
+            acompañante práctico y funcional.
+          </p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-title">Producto “instagrameable”</div>
+          <p>
+            El diseño del producto ayuda a generar conversación y contenido en
+            redes sociales.
+          </p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-title">Base para futuros formatos</div>
+          <p>
+            La tecnología de tapa aromática puede adaptarse a distintas líneas
+            y sabores en siguientes etapas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CIENCIA / CÓMO FUNCIONA -->
+    <section id="ciencia">
+      <div class="section-kicker">Cómo funciona</div>
+      <div class="section-title">Oxígeno, aroma y percepción de sabor</div>
+      <p class="section-lead">
+        Oxiboost aprovecha dos ideas simples: el papel del oxígeno en la
+        sensación de frescura y la importancia del aroma en cómo percibimos el
+        sabor. No se trata solo de lo que hay en la botella, sino de la
+        experiencia completa al momento de beber.
+      </p>
+
+      <div class="card">
+        <ul class="steps">
+          <li>
+            <div class="step-number">1</div>
+            <div>
+              <strong>Oxigenación del líquido.</strong><br />
+              El agua de Oxiboost se trabaja para incrementar su contenido de
+              oxígeno disuelto de forma controlada, buscando una sensación más
+              ligera y refrescante.
+            </div>
+          </li>
+          <li>
+            <div class="step-number">2</div>
+            <div>
+              <strong>Tapa con aro aromático.</strong><br />
+              En la parte superior se integra un aro con aroma. Al beber, el
+              consumidor percibe ese aroma al mismo tiempo que el líquido,
+              intensificando la experiencia de sabor.
+            </div>
+          </li>
+          <li>
+            <div class="step-number">3</div>
+            <div>
+              <strong>Zero azúcar, sabor percibido.</strong><br />
+              Como el “sabor” se apoya en el aroma, la bebida puede mantener un
+              perfil limpio, con zero azúcar y una propuesta enfocada en
+              bienestar.
+            </div>
+          </li>
+          <li>
+            <div class="step-number">4</div>
+            <div>
+              <strong>Ritual de consumo.</strong><br />
+              Abrir la botella, percibir el aroma y tomar un momento para
+              respirar crea un pequeño ritual que el consumidor puede asociar a
+              pausa, calma y recarga de energía.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <div class="section-kicker">Contacto</div>
+      <div class="section-title">Hablemos de Oxiboost</div>
+
+      <div class="contact-layout">
+        <div class="contact-info">
+          <p>
+            Esta sección está pensada para conectar con distribuidores, puntos
+            de venta, gimnasios o marcas interesadas en explorar Oxiboost como
+            parte de su oferta.
+          </p>
+          <p>
+            Aquí después puedes agregar redes sociales y datos de contacto
+            oficiales de la marca.
+          </p>
+          <p style="margin-top: 0.8rem;">
+            Correo de ejemplo:
+            <strong>contacto@oxiboost.com</strong>
+          </p>
+          <p class="contact-note" style="margin-top: 0.5rem;">
+            *Cuando tengas un dominio y correo oficial, solo reemplaza estos
+            datos y la página seguirá funcionando igual.
+          </p>
+        </div>
+
+        <form
+          class="contact-card"
+          onsubmit="event.preventDefault(); alert('Por ahora este formulario es solo de ejemplo 😊');"
+        >
+          <div>
+            <label for="nombre">Nombre</label>
+            <input
+              id="nombre"
+              class="input"
+              type="text"
+              placeholder="Empresa o nombre de contacto"
+            />
+          </div>
+          <div>
+            <label for="email">Correo</label>
+            <input
+              id="email"
+              class="input"
+              type="email"
+              placeholder="tu@correo.com"
+            />
+          </div>
+          <div>
+            <label for="mensaje">Mensaje</label>
+            <textarea
+              id="mensaje"
+              class="input"
+              placeholder="Cuéntanos brevemente qué tipo de colaboración te interesa..."
+            ></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">
+              Enviar mensaje
+            </button>
+            <div class="contact-note">
+              Formulario demostrativo. También puedes contactar directamente
+              por correo.
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> Oxiboost.</span>
+    <span>Bebida oxigenante con experiencia aromática y zero azúcar.</span>
+  </footer>
+
+  <script>
+    // Año automático
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href").substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
