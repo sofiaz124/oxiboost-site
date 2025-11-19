@@ -1,153 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-  <style>
-  /* Fondo general más claro */
-  body {
-    background: #f5f7fa;
-  }
-
-  /* Logo más grande */
-  .logo-img {
-    height: 100px;
-    <div class="logo">
-  <img src="oxiboost-logo.jpeg" alt="Oxiboost logo" class="logo-img">
-</div>
-  }
-
-  /* Hero Oxiboost (nuevo) */
-  .ox-hero {
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 32px 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 24px;
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.06);
-    margin: 32px auto 40px;
-    max-width: 1100px;
-  }
-
-  .ox-hero-title {
-    font-size: 40px;
-    margin-bottom: 12px;
-  }
-
-  .ox-hero-subtitle {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
-
-  .ox-hero-text {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #44515c;
-    margin-bottom: 18px;
-  }
-
-  .ox-hero-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .ox-tag {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    padding: 6px 10px;
-    border-radius: 999px;
-    border: 1px solid rgba(12, 26, 26, 0.1);
-    background: #ffffff;
-  }
-
-  .ox-hero-bottle img {
-    max-height: 420px;
-    width: auto;
-    display: block;
-  }
-
-  /* Sabores Oxiboost (nuevo bloque) */
-  .ox-flavors-wrapper {
-    max-width: 1100px;
-    margin: 0 auto 48px;
-  }
-
-  .ox-flavors-card {
-    background: #ffffff;
-    padding: 24px 18px 22px;
-    border-radius: 22px;
-    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.05);
-  }
-
-  .ox-flavors-copy {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #43505b;
-    margin-bottom: 18px;
-    max-width: 700px;
-  }
-
-  .ox-pill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
-    font-size: 11px;
-  }
-
-  .ox-pill {
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: #f4f7fb;
-    border: 1px solid rgba(60, 80, 110, 0.12);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  .ox-flavors-grid {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
-    text-align: center;
-    align-items: flex-end;
-  }
-
-  .ox-flavor-card img {
-    max-height: 230px;
-    display: block;
-    margin: 0 auto 8px;
-  }
-
-  .ox-flavor-name {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 820px) {
-    .ox-hero {
-      flex-direction: column;
-      text-align: center;
-    }
-    .ox-flavors-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 520px) {
-    .ox-flavors-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Oxiboost | Bebida oxigenante</title>
+
   <style>
     :root {
       --bg: #020617;
@@ -181,6 +38,8 @@
       text-decoration: none;
     }
 
+    /* HEADER / NAV */
+
     header {
       position: sticky;
       top: 0;
@@ -194,29 +53,6 @@
       );
       border-bottom: 1px solid rgba(148, 163, 184, 0.25);
     }
-    <!-- HERO NUEVO OXIBOOST -->
-<section class="ox-hero">
-  <div>
-    <h1 class="ox-hero-title">OXIBOOST</h1>
-    <h2 class="ox-hero-subtitle">Bebida oxigenante con experiencia aromática</h2>
-    <p class="ox-hero-text">
-      Oxiboost es agua oxigenada de alta pureza, diseñada para acompañar tu día con una sensación
-      de frescura profunda y ligera. Una bebida moderna, limpia y sin azúcar.
-    </p>
-
-    <div class="ox-hero-tags">
-      <span class="ox-tag">Sin azúcar</span>
-      <span class="ox-tag">0 calorías</span>
-      <span class="ox-tag">Sin colorantes</span>
-      <span class="ox-tag">Aromas naturales</span>
-    </div>
-  </div>
-
-  <div class="ox-hero-bottle">
-    <!-- Botella NATURAL -->
-    <img src="bottle-natural.jpeg" alt="Oxiboost Natural">
-  </div>
-</section>
 
     .nav-inner {
       max-width: 1100px;
@@ -235,7 +71,7 @@
     }
 
     .logo-img {
-      height: 36px;
+      height: 100px;   /* ← LOGO MÁS GRANDE */
       width: auto;
       display: block;
     }
@@ -284,7 +120,8 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* HERO */
+    /* HERO ORIGINAL */
+
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.4fr);
@@ -419,6 +256,8 @@
       z-index: 1;
     }
 
+    /* aquí podrías reemplazar la botella “dibujada” por una imagen real si quieres */
+
     .bottle {
       width: 100%;
       aspect-ratio: 3 / 5;
@@ -519,7 +358,8 @@
       border: 1px dashed rgba(148, 163, 184, 0.7);
     }
 
-    /* GENERIC SECTIONS */
+    /* SECCIONES GENERALES */
+
     .section-kicker {
       font-size: 0.8rem;
       text-transform: uppercase;
@@ -541,7 +381,8 @@
       margin-bottom: 1.4rem;
     }
 
-    /* PRODUCT */
+    /* PRODUCTO */
+
     .product-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.6fr);
@@ -583,51 +424,72 @@
       background: var(--accent);
       margin-top: 0.45rem;
     }
-    <!-- SECCIÓN NUEVA: SABORES OXIBOOST -->
-<section class="ox-flavors-wrapper">
-  <h2 style="font-size:28px; margin-bottom:6px;">Sabores Oxiboost</h2>
-  <p style="font-size:14px; color:#5a6670; margin-bottom:20px;">
-    Una línea de sabores ligeros, frescos y sin azúcar añadida.
-  </p>
 
-  <div class="ox-flavors-card">
-    <p class="ox-flavors-copy">
-      Oxiboost no contiene azúcar, calorías ni colorantes artificiales. Cada sabor aporta una
-      experiencia aromática ligera y moderna, ideal para hidratarte todo el día.
-    </p>
+    /* SABORES OXIBOOST – NUEVO BLOQUE */
 
-    <div class="ox-pill-list">
-      <span class="ox-pill">sin azúcar</span>
-      <span class="ox-pill">0 calorías</span>
-      <span class="ox-pill">sin colorantes</span>
-      <span class="ox-pill">aromas naturales</span>
-    </div>
+    .ox-flavors-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-    <div class="ox-flavors-grid">
-      <div class="ox-flavor-card">
-        <img src="bottle-natural.jpeg" alt="Oxiboost Natural">
-        <div class="ox-flavor-name">Natural</div>
-      </div>
+    .ox-flavors-card {
+      background: rgba(15, 23, 42, 0.97);
+      padding: 24px 18px 22px;
+      border-radius: 22px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
 
-      <div class="ox-flavor-card">
-        <img src="bottle-lime-lemon.jpeg" alt="Oxiboost Lime-Lemon">
-        <div class="ox-flavor-name">Lime–Lemon</div>
-      </div>
+    .ox-flavors-copy {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 700px;
+    }
 
-      <div class="ox-flavor-card">
-        <img src="bottle-strawberry.jpeg" alt="Oxiboost Strawberry">
-        <div class="ox-flavor-name">Strawberry</div>
-      </div>
+    .ox-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 0.8rem;
+    }
 
-      <div class="ox-flavor-card">
-        <img src="bottle-blue-raspberry.jpeg" alt="Oxiboost Blue-Raspberry">
-        <div class="ox-flavor-name">Blue–Raspberry</div>
-      </div>
-    </div>
-  </div>
-</section>
+    .ox-pill {
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
 
-    /* BENEFITS GRID */
+    .ox-flavors-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      text-align: center;
+      align-items: flex-end;
+    }
+
+    .ox-flavor-card img {
+      max-height: 230px;
+      display: block;
+      margin: 0 auto 8px;
+    }
+
+    .ox-flavor-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* BENEFICIOS */
+
     .benefits-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -648,7 +510,8 @@
       margin-bottom: 0.25rem;
     }
 
-    /* SCIENCE / HOW IT WORKS */
+    /* CIENCIA */
+
     .steps {
       list-style: none;
       counter-reset: step;
@@ -685,7 +548,8 @@
       );
     }
 
-    /* CONTACT */
+    /* CONTACTO */
+
     .contact-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr);
@@ -759,6 +623,7 @@
     }
 
     /* RESPONSIVE */
+
     @media (max-width: 900px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
@@ -769,6 +634,9 @@
       .product-layout,
       .contact-layout {
         grid-template-columns: minmax(0, 1fr);
+      }
+      .ox-flavors-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -805,19 +673,24 @@
       .btn {
         justify-content: center;
       }
+      .ox-flavors-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="nav-inner">
       <div class="logo">
-        <img src="./oxiboost-logo.jpeg" alt="Oxiboost logo" class="logo-img" />
+        <img src="oxiboost-logo.jpeg" alt="Oxiboost logo" class="logo-img" />
       </div>
       <nav>
         <ul>
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#producto">Producto</a></li>
+          <li><a href="#sabores">Sabores</a></li>
           <li><a href="#beneficios">Beneficios</a></li>
           <li><a href="#ciencia">Cómo funciona</a></li>
           <li><a href="#contacto">Contacto</a></li>
@@ -827,7 +700,7 @@
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- HERO ORIGINAL -->
     <section id="inicio">
       <div class="hero">
         <div>
@@ -972,6 +845,51 @@
               </span>
             </li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SABORES OXIBOOST – NUEVO -->
+    <section id="sabores" class="ox-flavors-wrapper">
+      <div class="section-kicker">Sabores</div>
+      <div class="section-title">Sabores Oxiboost</div>
+      <p class="section-lead">
+        Una línea de sabores ligeros, frescos y sin azúcar añadida.
+      </p>
+
+      <div class="ox-flavors-card">
+        <p class="ox-flavors-copy">
+          Oxiboost no contiene azúcar, calorías ni colorantes artificiales. Cada sabor aporta una
+          experiencia aromática ligera y moderna, ideal para hidratarte todo el día.
+        </p>
+
+        <div class="ox-pill-list">
+          <span class="ox-pill">sin azúcar</span>
+          <span class="ox-pill">0 calorías</span>
+          <span class="ox-pill">sin colorantes</span>
+          <span class="ox-pill">aromas naturales</span>
+        </div>
+
+        <div class="ox-flavors-grid">
+          <div class="ox-flavor-card">
+            <img src="bottle-natural.jpeg" alt="Oxiboost Natural">
+            <div class="ox-flavor-name">Natural</div>
+          </div>
+
+          <div class="ox-flavor-card">
+            <img src="bottle-lime-lemon.jpeg" alt="Oxiboost Lime-Lemon">
+            <div class="ox-flavor-name">Lime–Lemon</div>
+          </div>
+
+          <div class="ox-flavor-card">
+            <img src="bottle-strawberry.jpeg" alt="Oxiboost Strawberry">
+            <div class="ox-flavor-name">Strawberry</div>
+          </div>
+
+          <div class="ox-flavor-card">
+            <img src="bottle-blue-raspberry.jpeg" alt="Oxiboost Blue-Raspberry">
+            <div class="ox-flavor-name">Blue–Raspberry</div>
+          </div>
         </div>
       </div>
     </section>
@@ -1178,4 +1096,3 @@
   </script>
 </body>
 </html>
-
